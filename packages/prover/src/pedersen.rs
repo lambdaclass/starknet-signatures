@@ -56,7 +56,7 @@ fn process_single_element(element: Fq, p1: Affine, p2: Affine) -> Affine {
 /// shift_point + x_low * P_0 + x_high * P1 + y_low * P2  + y_high * P3
 /// where x_low is the 248 low bits of x, x_high is the 4 high bits of x and similarly for y.
 /// shift_point, P_0, P_1, P_2, P_3 are constant points generated from the digits of pi.
-fn pedersen_hash(x: &Fq, y: &Fq) -> Fq {
+pub fn pedersen_hash(x: &Fq, y: &Fq) -> Fq {
     let point = CONSTANTS.hash_shift_point
         + process_single_element(*x, CONSTANTS.p0, CONSTANTS.p1)
         + process_single_element(*y, CONSTANTS.p2, CONSTANTS.p3);
